@@ -76,7 +76,7 @@
       </div>
       <div class="form-group" style="flex: 1;">
         <label>Print QTY *</label>
-        <input type="number" id="qtyInput" value="1" min="1" autocomplete="off">
+        <input type="number" id="qtyInput" value="" min="1" autocomplete="off">
       </div>
       <button class="btn" id="addBtn" onclick="fetchAndAddProduct()">➕ Add To List</button>
     </div>
@@ -297,7 +297,7 @@
       
       if (clearData) {
         skuInput.value = "";
-        qtyInput.value = "1";
+        qtyInput.value = "";
       }
       skuInput.focus();
     }
