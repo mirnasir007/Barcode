@@ -177,9 +177,15 @@
 
         suggBox.innerHTML = '';
         items.forEach(item => {
-          // --- UPDATE: Brand name chara ashol NAME niye asha ---
-          let name = item.NAME || item.BARCODE_NAME || item.DISPLAY_NAME || 'Unknown Product';
-          let barcode = item.BARCODE || item.SKU || item.Barcode || '';
+          // --- UPDATE: Better Name Extraction to avoid SKU showing as Name ---
+          let barcode = item.BARCODE || item.SKU || item.Barcode || item.PROD_CODE || '';
+          let name = item.DISPLAY_NAME || item.PRODUCT_NAME || item.NAME || item.BARCODE_NAME || 'Unknown Product';
+          
+          if (barcode && name.toUpperCase() === barcode.toUpperCase()) {
+              if (item.DISPLAY_NAME && item.DISPLAY_NAME.toUpperCase() !== barcode.toUpperCase()) name = item.DISPLAY_NAME;
+              else if (item.PRODUCT_NAME && item.PRODUCT_NAME.toUpperCase() !== barcode.toUpperCase()) name = item.PRODUCT_NAME;
+              else if (item.NAME && item.NAME.toUpperCase() !== barcode.toUpperCase()) name = item.NAME;
+          }
           
           if(barcode) {
               let div = document.createElement('div');
